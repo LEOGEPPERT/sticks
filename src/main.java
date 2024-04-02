@@ -7,6 +7,7 @@ public class main {
         int stickA2 = 1;
         int stickB1 = 1;
         int stickB2 = 1;
+        boolean turn = true; //if true, it is player 1's turn, if false, it is player 2's turn
         Map<Integer, String> botChoice = new TreeMap<>();
         botChoice.put(1, "attack");
         botChoice.put(2, "switch");
@@ -15,8 +16,8 @@ public class main {
         Scanner scan = new Scanner(System.in);
         //game will run while the value is true
         while(game){
+        System.out.println("PLAYER 1:" + stickA1 + " " + stickA2 + "\nPLAYER 2:" + stickB1 + " " + stickB2);
         
-        boolean turn = true; //if true, it is player 1's turn, if false, it is player 2's turn
         System.out.println(turn == true ? "PLAYER 1: What do want to do?" : "PLAYER 2: What do want to do?");
          
             //robot choice
@@ -27,26 +28,29 @@ public class main {
         }
         switch(choice){
             case "attack":
-
-                addStick(1,2,32,1);
+                if(turn == true){addStick(stickA1,stickA2,stickB1,stickB2);}
+                else{addStick(stickB1,stickB2,stickA1,stickA2);}
                 break;
             case "switch":
-                switchStick(stickA1, stickA2);
+                if(turn == true){switchStick(stickA1, stickA2);}
+                else{switchStick(stickB1,stickB2);}
+                break;
         }
-        turn != turn;
+        turn = !turn;
         
 
     }
 }
     //add stick values together, if one hand equals 5, you lose that hand
     public static void addStick(int a1, int a2, int b1, int b2){
-        System.out.println("With what hand? (left/right)");//if left, then put a1 into addStick method
             Scanner scan = new Scanner(System.in);
+
+            System.out.println("With what hand? (left/right)");//if left, then put a1 into addStick method
             String hand = scan.nextLine();
             System.out.println("To whom? (left/right)");
             String attack = scan.nextLine();
             int s1 = hand.equals("left") ? a1 : a2;
-            int s2 = hand.equals("left") ? b1 : b2;
+            int s2 = attack.equals("left") ? b1 : b2;
 
         s2 +=s1;
         if(s2 == 5){

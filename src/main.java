@@ -52,7 +52,7 @@ public class main {
                 leftOrRight.put(1, "left");
                 leftOrRight.put(2, "right");
             
-            System.out.println("With what hand? (left/right)");//if left, then put a1 into addStick method
+            System.out.println("With what hand? (left/right)");
             if(turn == true){
              hand = scan.nextLine();}
             else{
@@ -63,13 +63,35 @@ public class main {
             }
             else{
                 attack = leftOrRight.get((int)Math.random()*3 + 1);
+                System.out.println(attack);
             }
             int s1 = hand.equals("left") ? a1 : a2;
             int s2 = attack.equals("left") ? b1 : b2;
         s2 +=s1;
-        if(s2 == 5){
-            s2 = 0;
-        }                                                                                                                                                                                                                                      
+        for(int i = 0; i<s2; i++){
+            if(i == 5 && i == s2){
+                s2 = 0;     
+            }
+            if(i > 5 && i == s2){
+                s2 %= 5;
+            }
+        }
+        if(turn == true){
+            if(attack.equals("left")){
+                stickB1 = s2;
+            }
+            else{
+                stickB2 = s2;
+            }
+        }
+        if(turn == false){
+            if(attack.equals("left")){
+                stickA1 = s2;
+            }
+            else{
+                stickA2 = s2;
+            }
+        }                                                                                                                                                                                                                                     
     }
     //Switch stick values for the hand, make sure to later add that you cant just infinitely switch around the same two values
     public static void switchStick(int left, int right){

@@ -7,6 +7,7 @@ public class main {
         static int stickB2 = 1;
         static boolean turn = true; //if true, it is player 1's turn, if false, it is player 2's turn
     public static void main(String[] args) throws Exception {
+        new GUI();
         boolean game = true;
         Map<Integer, String> botChoice = new TreeMap<>();
         botChoice.put(1, "attack");

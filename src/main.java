@@ -5,9 +5,11 @@ public class main {
         static int stickA2 = 1;
         static int stickB1 = 1;
         static int stickB2 = 1;
+        static GUI gui = new GUI();
         static boolean turn = true; //if true, it is player 1's turn, if false, it is player 2's turn
     public static void main(String[] args) throws Exception {
         new GUI();
+        
         boolean game = true;
         Map<Integer, String> botChoice = new TreeMap<>();
         botChoice.put(1, "attack");
@@ -26,6 +28,8 @@ public class main {
             //robot choice
           String choice = botChoice.get((int)Math.random()*3 + 1);
         
+
+          //make variables in action listeners for the exit buttons for switch and attack; 
         if(turn == true){
          choice = scan.nextLine();
         }
@@ -55,12 +59,12 @@ public class main {
             
             System.out.println("With what hand? (left/right)");
             if(turn == true){
-             hand = scan.nextLine();}
+             hand = gui.handP;}
             else{
                 hand = leftOrRight.get((int)Math.random()*3 + 1);
             }
             System.out.println("To whom? (left/right)");
-            if(turn == true){ attack = scan.nextLine();
+            if(turn == true){ attack = gui.handE;
             }
             else{
                 attack = leftOrRight.get((int)Math.random()*3 + 1);

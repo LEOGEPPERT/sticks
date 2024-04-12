@@ -2,67 +2,142 @@ import javax.swing.*;
 import java.awt.event.*;;
 
 public class GUI{
+    //mainScreen
     JFrame mainScreen;
     JFrame switchScreen;
     JFrame attackScreen;
     JButton attack;
     JButton switchHands;
+    JLabel handCountP;
+    JLabel handCountE;
+    //switchScreen
     JTextField leftHand;
     JTextField rightHand;
+    JButton exitSwitchScreen;
+    int leftNum;
+    int rightNum;
+    //attackscreen
+    JLabel yourHand;
+    JLabel enemyHand;
+    JButton yHL;
+    JButton yHR;
+    JButton eHL;
+    JButton eHR;
+    JButton exitAttackScreen;
+    String handP;
+    String handE;
     public GUI(){
-    //attack
-    attack = new JButton("attack");
-    attack.setBounds(50,100,100, 40); 
-    attack.addActionListener(new ActionListener() { 
-        public void actionPerformed(ActionEvent e) { 
-          attackScreen.setVisible(true);
-          mainScreen.setVisible(false);
-        } 
-      } );
     
-    //switchHands
-    switchHands = new JButton("switch");
-    switchHands.setBounds(200,100,100, 40);
-    
-    
-    switchHands.setVisible(true);
-    switchHands.addActionListener(new ActionListener() { 
-        public void actionPerformed(ActionEvent e) { 
-          switchScreen.setVisible(true);
-          mainScreen.setVisible(false);
-          leftHand.setVisible(true);
-          rightHand.setVisible(true);
-        } 
-      } );
     //mainScreen
     mainScreen = new JFrame("What Will You Do?");
     mainScreen.setSize(600,600);
     mainScreen.setVisible(true);
     mainScreen.setLayout(null);
     
-
-    mainScreen.add(switchHands);
-    //switchScreen
+    handCountP = new JLabel("PLAYER:");
+    handCountE = new JLabel("ENEMY:");
     
+//switch to attack screen
+attack = new JButton("attack");
+attack.setBounds(250,500,100, 50); 
+attack.addActionListener(new ActionListener() { 
+    public void actionPerformed(ActionEvent e) { 
+      attackScreen.setVisible(true);
+      mainScreen.setVisible(false);
+    } 
+  } );
+
+  //switch to switchScreen
+    switchHands = new JButton("switch");
+    switchHands.setBounds(350,500,100, 50); 
+    switchHands.addActionListener(new ActionListener() { 
+    public void actionPerformed(ActionEvent e) { 
+      switchScreen.setVisible(true);
+      mainScreen.setVisible(false);
+    } 
+  } );
+  mainScreen.add(switchHands);
+  mainScreen.add(attack);
+
+  //switchScreen
     switchScreen = new JFrame("What values will you give your hands?");
     switchScreen.setSize(400,200);
     switchScreen.setVisible(false);
     switchScreen.setLayout(null);
+    exitSwitchScreen = new JButton("OK");
     leftHand = new JTextField();
     rightHand = new JTextField();
-    leftHand.setBounds(10,10,100,20);
-    rightHand.setBounds(10,50,100,20);
-    leftHand.setVisible(false);
-    rightHand.setVisible(false);
+    exitSwitchScreen.setBounds(300,150,50,25);
+    leftHand.setBounds(10,50,100,30);
+    rightHand.setBounds(10,100,100,30);
+    switchScreen.add(exitSwitchScreen);
+    switchScreen.add(leftHand);
+    switchScreen.add(rightHand);
+    exitSwitchScreen.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent e) {
+        leftNum = Integer.valueOf(leftHand.getText());
+        rightNum = Integer.valueOf(rightHand.getText());
+        mainScreen.setVisible(true);
+        switchScreen.setVisible(false);
+      } 
+    } );   
     
     
 
     //attackScreen
+
+
     attackScreen = new JFrame("Choose your attack");
     attackScreen.setSize(400,200);
     attackScreen.setVisible(false);
     attackScreen.setLayout(null);
-
+    //Buttons in attackScreen
+     handP = "left";
+     handE = "left";
+    yHL = new JButton("Left");
+    yHR = new JButton("Right");
+    eHL = new JButton("Left");
+    eHR = new JButton("Right");
+    exitAttackScreen = new JButton("OK");
+    yHL.setBounds(100,50,50,25);
+    yHR.setBounds(200,50,50,25);
+    eHL.setBounds(100,100,50,25);
+    eHR.setBounds(200,100,50,25);
+    exitAttackScreen.setBounds(300,150,50,25);
+    attackScreen.add(yHL);
+    attackScreen.add(yHR);
+    attackScreen.add(eHL);
+    attackScreen.add(eHR);
+    attackScreen.add(exitAttackScreen);
+    yHL.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent e) { 
+        handP = "left";
+      } 
+    } );
+    yHR.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent e) { 
+        handP = "right";
+      } 
+    } );
+    eHL.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent e) { 
+        handE = "left";
+      } 
+    } );
+    eHR.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent e) { 
+        handE = "right";
+      } 
+    } ); 
+    exitAttackScreen.addActionListener(new ActionListener() { 
+      public void actionPerformed(ActionEvent e) {
+        
+        mainScreen.setVisible(true);
+        attackScreen.setVisible(false);
+      } 
+    } );   
+      
+    
     
     } 
     

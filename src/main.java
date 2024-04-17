@@ -5,6 +5,7 @@ public class main {
         static int stickA2 = 1;
         static int stickB1 = 1;
         static int stickB2 = 1;
+        
         static GUI gui = new GUI();
         static boolean turn = true; //if true, it is player 1's turn, if false, it is player 2's turn
     public static void main(String[] args) throws Exception {

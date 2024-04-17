@@ -10,6 +10,10 @@ public class GUI{
     JButton switchHands;
     JLabel handCountP;
     JLabel handCountE;
+    int leftHandPNum;
+    int rightHandPNum;
+    int leftHandENum;
+    int rightHandENum;
     //switchScreen
     JTextField leftHand;
     JTextField rightHand;
@@ -27,8 +31,11 @@ public class GUI{
     String handP;
     String handE;
     public GUI(){
-    
-    //mainScreen
+      leftHandPNum = 0;
+      rightHandPNum = 0;
+      leftHandENum = 0;
+      rightHandENum = 0;
+   //mainScreen
     mainScreen = new JFrame("What Will You Do?");
     mainScreen.setSize(600,600);
     mainScreen.setVisible(true);
@@ -36,6 +43,8 @@ public class GUI{
     
     handCountP = new JLabel("PLAYER:");
     handCountE = new JLabel("ENEMY:");
+    handCountP.setBounds(300,50,200,50);
+    handCountE.setBounds(300,100,200,50);
     
 //switch to attack screen
 attack = new JButton("attack");
@@ -58,7 +67,8 @@ attack.addActionListener(new ActionListener() {
   } );
   mainScreen.add(switchHands);
   mainScreen.add(attack);
-
+  mainScreen.add(handCountP);
+  mainScreen.add(handCountE);
   //switchScreen
     switchScreen = new JFrame("What values will you give your hands?");
     switchScreen.setSize(400,200);

@@ -7,17 +7,15 @@ public class main {
         static int stickB2 = 1;
         
         static GUI gui = new GUI();
+        
         static boolean turn = true; //if true, it is player 1's turn, if false, it is player 2's turn
     public static void main(String[] args) throws Exception {
         new GUI();
-        
         boolean game = true;
+        updateInt();
         Map<Integer, String> botChoice = new TreeMap<>();
         botChoice.put(1, "attack");
         botChoice.put(2, "switch");
-        
-        
-
         System.out.println("Sticks");
         Scanner scan = new Scanner(System.in);
         //game will run while the value is true
@@ -97,8 +95,10 @@ public class main {
             else{
                 stickA2 = s2;
             }
-        }                                                                                                                                                                                                                                     
+        }
+        updateInt();                                                                                                                                                                                                                                     
     }
+    
     //Switch stick values for the hand, make sure to later add that you cant just infinitely switch around the same two values
     public static void switchStick(int left, int right){
         int total = left + right;
@@ -120,5 +120,12 @@ public class main {
         if(total - right > 0){
             total -= right;
         }
+        updateInt();
+    }
+    public static void updateInt(){
+        GUI.leftHandPNum=stickA1;
+        GUI.rightHandPNum=stickA2;
+        GUI.leftHandENum=stickB1;
+        GUI.rightHandENum=stickB2;
     }
 }

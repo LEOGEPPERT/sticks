@@ -1,5 +1,7 @@
+
 import javax.swing.*;
-import java.awt.event.*;;
+import java.awt.event.*;
+
 
 public class GUI{
     //mainScreen
@@ -10,14 +12,16 @@ public class GUI{
     JButton switchHands;
     JLabel handCountP;
     JLabel handCountE;
-    int leftHandPNum;
-    int rightHandPNum;
-    int leftHandENum;
-    int rightHandENum;
+    static int leftHandPNum;
+    static int rightHandPNum;
+    static int leftHandENum;
+    static int rightHandENum;
     //switchScreen
     JTextField leftHand;
     JTextField rightHand;
     JButton exitSwitchScreen;
+    JLabel handCountPsw;
+    JLabel handCountEsw;
     int leftNum;
     int rightNum;
     //attackscreen
@@ -31,18 +35,18 @@ public class GUI{
     String handP;
     String handE;
     public GUI(){
-      leftHandPNum = 0;
-      rightHandPNum = 0;
-      leftHandENum = 0;
-      rightHandENum = 0;
+      leftHandPNum = 1;
+      rightHandPNum = 1;
+      leftHandENum = 1;
+      rightHandENum = 1;
    //mainScreen
     mainScreen = new JFrame("What Will You Do?");
     mainScreen.setSize(600,600);
     mainScreen.setVisible(true);
     mainScreen.setLayout(null);
     
-    handCountP = new JLabel("PLAYER:");
-    handCountE = new JLabel("ENEMY:");
+    handCountP = new JLabel("PLAYER- L: " + leftHandPNum + " R: " + rightHandPNum);
+    handCountE = new JLabel("ENEMY- L: " + leftHandENum +" R:" + rightHandENum);
     handCountP.setBounds(300,50,200,50);
     handCountE.setBounds(300,100,200,50);
     
@@ -77,12 +81,18 @@ attack.addActionListener(new ActionListener() {
     exitSwitchScreen = new JButton("OK");
     leftHand = new JTextField();
     rightHand = new JTextField();
-    exitSwitchScreen.setBounds(300,150,50,25);
+    exitSwitchScreen.setBounds(300,150,50,50);
     leftHand.setBounds(10,50,100,30);
     rightHand.setBounds(10,100,100,30);
     switchScreen.add(exitSwitchScreen);
     switchScreen.add(leftHand);
     switchScreen.add(rightHand);
+    handCountPsw = new JLabel("L: " + leftHandPNum);
+    handCountEsw = new JLabel("R: " + rightHandPNum);
+    handCountPsw.setBounds(50,10,200,50);
+    handCountEsw.setBounds(50,60,200,50);
+    switchScreen.add(handCountPsw);
+    switchScreen.add(handCountEsw);
     exitSwitchScreen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent e) {
         leftNum = Integer.valueOf(leftHand.getText());
@@ -149,7 +159,8 @@ attack.addActionListener(new ActionListener() {
       
     
     
-    } 
+    }
+    
     
     
       

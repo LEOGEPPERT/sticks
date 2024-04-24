@@ -32,7 +32,7 @@ public class GUI{
     JButton eHL;
     JButton eHR;
     JButton exitAttackScreen;
-    String handP;
+    String handP;//
     String handE;
     public GUI(){
       leftHandPNum = 1;

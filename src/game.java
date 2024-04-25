@@ -44,7 +44,7 @@ public class game {
                     GUI.finChoice = true;
                 }
             }
-            
+            //
             switch (choice) {
                 case "attack":
                     if (turn == true) {

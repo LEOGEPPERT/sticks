@@ -35,46 +35,6 @@ public class GUI {
   JButton exitAttackScreen;
   String handP;
   String handE;
-
-  public GUI() {
-    choiceStr = "";
-    leftHandPNum = 1;
-    rightHandPNum = 1;
-    leftHandENum = 1;
-    rightHandENum = 1;
-
-    // mainScreen
-public class GUI{
-    //mainScreen
-    JFrame mainScreen;
-    JFrame switchScreen;
-    JFrame attackScreen;
-    JButton attack;
-    JButton switchHands;
-    JLabel handCountP;
-    JLabel handCountE;
-    static int leftHandPNum;
-    static int rightHandPNum;
-    static int leftHandENum;
-    static int rightHandENum;
-    //switchScreen
-    JTextField leftHand;
-    JTextField rightHand;
-    JButton exitSwitchScreen;
-    JLabel handCountPsw;
-    JLabel handCountEsw;
-    int leftNum;
-    int rightNum;
-    //attackscreen
-    JLabel yourHand;
-    JLabel enemyHand;
-    JButton yHL;
-    JButton yHR;
-    JButton eHL;
-    JButton eHR;
-    JButton exitAttackScreen;
-    String handP;//
-    String handE;
     public GUI(){
       leftHandPNum = 1;
       rightHandPNum = 1;
@@ -201,8 +161,9 @@ public class GUI{
       }
     });
     
+      
   }
-  public static void finChoiceCheck(String b){
-      b = choiceStr;
-  }
+
 }
+  
+

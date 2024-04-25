@@ -1,6 +1,7 @@
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class GUI {
   // mainScreen
@@ -35,6 +36,7 @@ public class GUI {
   JButton exitAttackScreen;
   String handP;
   String handE;
+  static Map<String,Integer> handValues = new TreeMap<>();
     public GUI(){
       leftHandPNum = 1;
       rightHandPNum = 1;
@@ -58,8 +60,6 @@ public class GUI {
       public void actionPerformed(ActionEvent e) {
         attackScreen.setVisible(true);
         mainScreen.setVisible(false);
-        choiceStr = "attack";
-        finChoice = true;
       }
     });
 
@@ -70,15 +70,15 @@ public class GUI {
       public void actionPerformed(ActionEvent e) {
         switchScreen.setVisible(true);
         mainScreen.setVisible(false);
-        choiceStr = "switch";
-        finChoice = true;
       }
     });
     mainScreen.add(switchHands);
     mainScreen.add(attack);
     mainScreen.add(handCountP);
     mainScreen.add(handCountE);
+
     // switchScreen
+
     switchScreen = new JFrame("What values will you give your hands?");
     switchScreen.setSize(400, 200);
     switchScreen.setVisible(false);
@@ -102,9 +102,10 @@ public class GUI {
       public void actionPerformed(ActionEvent e) {
         leftNum = Integer.valueOf(leftHand.getText());
         rightNum = Integer.valueOf(rightHand.getText());
+        game.switchStick(leftNum, rightNum);
         mainScreen.setVisible(true);
         switchScreen.setVisible(false);
-        finChoice = false;
+        
       }
     });
 
@@ -114,9 +115,13 @@ public class GUI {
     attackScreen.setSize(400, 200);
     attackScreen.setVisible(false);
     attackScreen.setLayout(null);
+
     // Buttons in attackScreen
+
     handP = "left";
     handE = "left";
+    handValues.put("PLAYER",game.stickA1);
+    handValues.put("ENEMY",game.stickB1);
     yHL = new JButton("Left");
     yHR = new JButton("Right");
     eHL = new JButton("Left");
@@ -134,30 +139,37 @@ public class GUI {
     attackScreen.add(exitAttackScreen);
     yHL.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        handP = "left";
+        handValues.put("PLAYER",game.stickA1);
       }
     });
     yHR.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        handP = "right";
+        handValues.put("PLAYER",game.stickA2);
       }
     });
     eHL.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        handValues.put("ENEMY",game.stickB1);
         handE = "left";
       }
     });
     eHR.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        handValues.put("ENEMY",game.stickB2);
         handE = "right";
       }
     });
     exitAttackScreen.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-
+        if(handE.equals("left")){
+          game.stickB1 = game.playerAttack(handValues.get("PLAYER"), handValues.get("ENEMY"));
+        }
+        else{
+          game.stickB2 = game.playerAttack(handValues.get("PLAYER"), handValues.get("ENEMY"));
+        }
         mainScreen.setVisible(true);
         attackScreen.setVisible(false);
-        finChoice = false;
+        
       }
     });
     

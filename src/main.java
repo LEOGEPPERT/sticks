@@ -5,6 +5,6 @@ public class main {
         new GUI();
         new game();
         game.initializeGame();
-        game.runGame(true);
+        
     }
 }

@@ -35,16 +35,9 @@ public class game {
             // robot choice
             choice = botChoice.get((int) Math.random() * 3 + 1);
 
-            // make variables in action listeners for the exit buttons for switch and attack
-            while (turn == true && GUI.finChoice == false) {
-                // choice = GUI.choiceStr;
-                // GUI.finChoiceCheck(choice);
-                // System.out.println(choice);
-                if(!(GUI.choiceStr.equals(""))){
-                    GUI.finChoice = true;
-                }
+            
+            
             }
-            //
             switch (choice) {
                 case "attack":
                     if (turn == true) {
@@ -115,7 +108,18 @@ public class game {
         }
         updateInt();
     }
-
+    //only invoke methods after they exit respective screens
+    public static int playerAttack(int player, int enemy){
+        for (int i = 0; i < player; i++) {
+            if (i == 5 && i == player) {
+                enemy = 0;
+            }
+            if (i > 5 && i == player) {
+                enemy %= 5;
+            }
+            return enemy;
+        }
+    }
     // Switch stick values for the hand
     public static void switchStick(int left, int right) {
         int total = left + right;

@@ -1,5 +1,5 @@
 import java.util.*;
-import java.awt.*;
+
 
 public class game {
     static int stickA1 = 1;
@@ -10,77 +10,50 @@ public class game {
     static boolean finChoice;
     static GUI gui = new GUI();
 
-    static boolean turn = true; // if true, it is player 1's turn, if false, it is player 2's turn
+    static boolean turn = true; 
     static GUI GUI = new GUI();
 
     static Map<Integer, String> botChoice = new TreeMap<>();
-
+    static int leftAmount;
+    static int rightAmount;
     public static void initializeGame() {
         botChoice.put(1, "attack");
         botChoice.put(2, "switch");
         System.out.println("Sticks");
-        updateInt();
+       
     }
 
     static Scanner scan = new Scanner(System.in);
 
-    // game will run while the value is true
-    public static void runGame(boolean game) {
-        
-        while (game) {
-            System.out.println("PLAYER 1:" + stickA1 + " " + stickA2 + "\nPLAYER 2:" + stickB1 + " " + stickB2);
-
-            System.out.println(turn == true ? "PLAYER 1: What do want to do?" : "PLAYER 2: What do want to do?");
-
-            // robot choice
-            choice = botChoice.get((int) Math.random() * 3 + 1);
-
-            
-            
-            }
+    //Choice selection for BOGO algorithm
+    public static void bogoChoice() {
+            choice = botChoice.get((Math.random() <= 0.5) ? 1 : 2);
             switch (choice) {
                 case "attack":
-                    if (turn == true) {
-                        addStick(stickA1, stickA2, stickB1, stickB2);
-                    } else {
-                        addStick(stickB1, stickB2, stickA1, stickA2);
-                    }
+                        bogoAddStick(stickB1, stickB2, stickA1, stickA2);
                     break;
                 case "switch":
-                    if (turn == true) {
-                        switchStick(stickA1, stickA2);
-                    } else {
-                        switchStick(stickB1, stickB2);
-                    }
+                        bogoSwitchStick(stickB1, stickB2);
                     break;
+                }
             }
-            turn = !turn;
+        
+    
 
-        }
-    }
-
-    // add stick values together, if one hand equals 5, you lose that hand
-    public static void addStick(int a1, int a2, int b1, int b2) {
-        Scanner scan = new Scanner(System.in);
+    //Attack for BOGO algorithm
+    public static void bogoAddStick(int a1, int a2, int b1, int b2) {
         String hand = "";
         String attack = "";
         Map<Integer, String> leftOrRight = new TreeMap<>();
         leftOrRight.put(1, "left");
         leftOrRight.put(2, "right");
 
-        System.out.println("With what hand? (left/right)");
-        if (turn == true) {
-            hand = gui.handP;
-        } else {
-            hand = leftOrRight.get((int) Math.random() * 3 + 1);
-        }
+        System.out.println("With what hand? (left/right)");  
+            hand = leftOrRight.get((Math.random() <= 0.5) ? 1 : 2);
+        
         System.out.println("To whom? (left/right)");
-        if (turn == true) {
-            attack = gui.handE;
-        } else {
-            attack = leftOrRight.get((int) Math.random() * 3 + 1);
-            System.out.println(attack);
-        }
+        attack = leftOrRight.get((Math.random() <= 0.5) ? 1 : 2);
+        System.out.println(attack);
         int s1 = hand.equals("left") ? a1 : a2;
         int s2 = attack.equals("left") ? b1 : b2;
         s2 += s1;
@@ -92,23 +65,15 @@ public class game {
                 s2 %= 5;
             }
         }
-        if (turn == true) {
-            if (attack.equals("left")) {
-                stickB1 = s2;
-            } else {
-                stickB2 = s2;
-            }
-        }
-        if (turn == false) {
             if (attack.equals("left")) {
                 stickA1 = s2;
             } else {
                 stickA2 = s2;
             }
-        }
-        updateInt();
+        
+        
     }
-    //only invoke methods after they exit respective screens
+    //Attack for player
     public static int playerAttack(int player, int enemy){
         for (int i = 0; i < player; i++) {
             if (i == 5 && i == player) {
@@ -116,44 +81,46 @@ public class game {
             }
             if (i > 5 && i == player) {
                 enemy %= 5;
-            }
-            return enemy;
+            }       
         }
+        return enemy;
     }
-    // Switch stick values for the hand
-    public static void switchStick(int left, int right) {
+    
+    //Stick Switch for BOGO algorithm
+    public static void bogoSwitchStick(int left, int right) {
         int total = left + right;
-        int leftAmount;
-        int rightAmount;
-        Scanner scan = new Scanner(System.in);
+        
         Map<Integer, String> leftOrRight = new TreeMap<>();
         leftOrRight.put(1, "left");
         leftOrRight.put(2, "right");
         System.out.println("How much do you want to put on your left hand?");
-        if (turn == true) {
-            leftAmount = scan.nextInt();
-        } else {
-            leftAmount = ((int) Math.random() * 6);
-        }
+            leftAmount = ((int) Math.random() * 6);  
         if (total - left > 0) {
             total -= left;
         }
-        System.out.println("How much do you want to put on your right hand?");
-        if (turn == true) {
-            rightAmount = scan.nextInt();
-        } else {
             rightAmount = ((int) Math.random() * 6);
-        }
         if (total - right > 0) {
             total -= right;
         }
-        updateInt();
+        
     }
-
-    public static void updateInt() {
-        GUI.leftHandPNum = stickA1;
-        GUI.rightHandPNum = stickA2;
-        GUI.leftHandENum = stickB1;
-        GUI.rightHandENum = stickB2;
+    //Stick Switch for player
+    public static void playerSwitchStick(int left, int right){
+        stickA1 = left;
+        stickA2 = right;
+    }
+    public static boolean playerSwitchCheck(int left, int right){
+        if((stickA1 + stickA2) == (left + right)){
+            return true;
+        }
+        else{
+        return false;
+        }
+    }
+    public static boolean winCheck(){
+        if((stickA1 + stickA2) == 0 || (stickB1 + stickB2) == 0){
+            return true;
+        }
+        return false;
     }
 }

@@ -33,7 +33,7 @@ public class GUI {
   String handP;
   String handE;
   // enemy move screen
-  JLabel enemyMoveLabel;
+  static JLabel enemyMoveLabel;
   static JFrame enemyMoveFrame;
   JButton enemyMoveButton;
   JButton exitEnemyMoveScreen;
@@ -213,6 +213,7 @@ public class GUI {
       exitEnemyMoveScreen.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           exitEnemyMoveScreen.setVisible(false);
+          enemyMoveButton.setVisible(true);
           enemyMoveFrame.setVisible(false);
           mainScreen.setVisible(true);
           displayWinScreen();
@@ -236,8 +237,9 @@ public class GUI {
       handCountE.setText("ENEMY- L: " + game.stickB1 + " R:" + game.stickB2);
       yourHand.setText("PLAYER- L: " + game.stickA1 + " R: " + game.stickA2);
       enemyHand.setText("ENEMY- L: " + game.stickB1 + " R:" + game.stickB2);
-      handCountPsw = new JLabel("L: " + game.stickA1);
-      handCountEsw = new JLabel("R: " + game.stickA2); 
+      handCountPsw.setText("L: " + game.stickA1);
+      handCountEsw.setText("R: " + game.stickA2);
+      enemyMoveLabel.setText("It's now the Enemy's turn."); 
     }
     public static void displayWinScreen(){
       if(game.winCheck() == true){

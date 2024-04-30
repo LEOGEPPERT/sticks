@@ -94,8 +94,8 @@ public class GUI {
     switchScreen.add(rightHand);
     handCountPsw = new JLabel("L: " + game.stickA1);
     handCountEsw = new JLabel("R: " + game.stickA2);
-    handCountPsw.setBounds(50, 10, 200, 50);
-    handCountEsw.setBounds(50, 60, 200, 50);
+    handCountPsw.setBounds(50, 15, 200, 50);
+    handCountEsw.setBounds(50, 65, 200, 50);
     switchScreen.add(handCountPsw);
     switchScreen.add(handCountEsw);
     exitSwitchScreen.addActionListener(new ActionListener() {
@@ -138,8 +138,9 @@ public class GUI {
 
     yourHand = new JLabel("PLAYER- L: " + game.stickA1 + " R: " + game.stickA2);
     enemyHand = new JLabel("ENEMY- L: " + game.stickB1 + " R:" + game.stickB2);
-    yourHand.setBounds(25,50,100,50);
-    enemyHand.setBounds(25,100,100,50); 
+    yourHand.setBounds(150,15,100,50);
+    enemyHand.setBounds(150,65,100,50); 
+    
 
     attackScreen.add(yourHand);
     attackScreen.add(enemyHand);

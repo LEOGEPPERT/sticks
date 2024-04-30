@@ -14,8 +14,7 @@ public class game {
     static GUI GUI = new GUI();
 
     static Map<Integer, String> botChoice = new TreeMap<>();
-    static int leftAmount;
-    static int rightAmount;
+    
     public static void initializeGame() {
         botChoice.put(1, "attack");
         botChoice.put(2, "switch");
@@ -75,35 +74,29 @@ public class game {
     }
     //Attack for player
     public static int playerAttack(int player, int enemy){
-        for (int i = 0; i < player; i++) {
-            if (i == 5 && i == player) {
-                enemy = 0;
-            }
-            if (i > 5 && i == player) {
-                enemy %= 5;
-            }       
-        }
+        
+                enemy = (player+enemy) % 5;       
+        
         return enemy;
     }
     
     //Stick Switch for BOGO algorithm
     public static void bogoSwitchStick(int left, int right) {
         int total = left + right;
+         int leftAmount;
+         
+         int smallest;
         
-        Map<Integer, String> leftOrRight = new TreeMap<>();
-        leftOrRight.put(1, "left");
-        leftOrRight.put(2, "right");
+        smallest = Math.min(4,total);
         System.out.println("How much do you want to put on your left hand?");
-            leftAmount = ((int) Math.random() * 6);  
-        if (total - left > 0) {
-            total -= left;
-        }
-            rightAmount = ((int) Math.random() * 6);
-        if (total - right > 0) {
-            total -= right;
+            leftAmount = ((int) Math.random() * smallest+1);  
+            total -= leftAmount;
+            left = leftAmount;
+            right = total;
+        
         }
         
-    }
+    
     //Stick Switch for player
     public static void playerSwitchStick(int left, int right){
         stickA1 = left;

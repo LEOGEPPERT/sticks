@@ -44,18 +44,18 @@ public class GUI {
     public GUI(){
    //mainScreen
     mainScreen = new JFrame("What Will You Do?");
-    mainScreen.setSize(600, 600);
+    mainScreen.setSize(400, 200);
     mainScreen.setVisible(true);
     mainScreen.setLayout(null);
 
     handCountP = new JLabel("PLAYER- L: " + game.stickA1 + " R: " + game.stickA2);
     handCountE = new JLabel("ENEMY- L: " + game.stickB1 + " R:" + game.stickB2);
-    handCountP.setBounds(300, 50, 200, 50);
-    handCountE.setBounds(300, 100, 200, 50);
+    handCountP.setBounds(150, 30, 100, 50);
+    handCountE.setBounds(150, 50, 100, 50);
 
     // switch to attack screen
     attack = new JButton("attack");
-    attack.setBounds(250, 500, 100, 50);
+    attack.setBounds(100, 110, 100, 50);
     attack.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         attackScreen.setVisible(true);
@@ -65,7 +65,7 @@ public class GUI {
 
     // switch to switchScreen
     switchHands = new JButton("switch");
-    switchHands.setBounds(350, 500, 100, 50);
+    switchHands.setBounds(200, 110, 100, 50);
     switchHands.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         switchScreen.setVisible(true);
@@ -86,7 +86,7 @@ public class GUI {
     exitSwitchScreen = new JButton("OK");
     leftHand = new JTextField();
     rightHand = new JTextField();
-    exitSwitchScreen.setBounds(300, 150, 50, 50);
+    exitSwitchScreen.setBounds(310, 135, 75, 30);
     leftHand.setBounds(10, 50, 100, 30);
     rightHand.setBounds(10, 100, 100, 30);
     switchScreen.add(exitSwitchScreen);
@@ -232,7 +232,7 @@ public class GUI {
 
       winFrame.add(winLabel);
   }
-    //update labels in mainScreen -- doesn't work for some reason 
+    //update labels in all frames
     public static void updateJLabel(){
       handCountP.setText("PLAYER- L: " + game.stickA1 + " R: " + game.stickA2);
       handCountE.setText("ENEMY- L: " + game.stickB1 + " R:" + game.stickB2);

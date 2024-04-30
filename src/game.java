@@ -11,7 +11,7 @@ public class game {
     static GUI gui = new GUI();
 
     static boolean turn = true; 
-    static GUI GUI = new GUI();
+    
 
     static Map<Integer, String> botChoice = new TreeMap<>();
     
